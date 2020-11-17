@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'routes/home_route.dart';
+import 'routes/article_route.dart';
 import 'routes/search_route.dart';
-import 'routes/notice_route.dart';
+import 'routes/recipe_route.dart';
 import 'routes/message_route.dart';
 
 class RootWidget extends StatefulWidget {
@@ -17,16 +18,18 @@ class _RootWidget extends State<RootWidget> {
   // アイコン情報
   final Map _rootWidgetIcons = {
     'ホーム' : {'icon': Icons.home, 'route': Home()},
+    '読み物' : {'icon': Icons.menu_book, 'route': Article()},
     '検索' : {'icon': Icons.search, 'route': Search()},
-    '通知' : {'icon': Icons.notifications, 'route': Notice()},
+    'レシピ動画' : {'icon': Icons.play_arrow, 'route': Recipe()},
     'メッセージ' : {'icon': Icons.mail, 'route': Message()},
   };
 
   // アイコン順番
   final List _footerItemOrder = [
     'ホーム',
+    '読み物',
     '検索',
-    '通知',
+    'レシピ動画',
     'メッセージ',
   ];
 
