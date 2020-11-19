@@ -6,7 +6,7 @@ class TopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Header(headerTitle: "ホーム"),
+        appBar: Header(headerTitle: "ホーム", headerColor:Colors.blue[100]),
         bottomNavigationBar: RootWidget(),
     );
   }

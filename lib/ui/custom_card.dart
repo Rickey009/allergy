@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../routes/image_preview.dart';
+import '../page/image_preview.dart';
 
 class CustomCard {
 

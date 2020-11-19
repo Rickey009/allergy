@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class RecipePage extends StatefulWidget {
+  final String title;
+  RecipePage({this.title});
   @override
-  _RecipeState createState() => _RecipeState();
+  _RecipeState createState() => _RecipeState(title:title);
 }
 
 class _RecipeState extends State<RecipePage> {
+  final String title;
+  _RecipeState({this.title});
+
   VideoPlayerController _controller;
   List _cardList = [];
 
@@ -72,7 +77,9 @@ class _RecipeState extends State<RecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(title),
+        ),
         body: Container(
             constraints: BoxConstraints.expand(),
             padding: EdgeInsets.only(

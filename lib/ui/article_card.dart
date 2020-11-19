@@ -15,15 +15,19 @@ class _ArticleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return Card(
         child: Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Image.network(_articleData["url"], fit: BoxFit.cover),
+          Container(
+            height: deviceHeight * 0.15,
+          child:Image.network(_articleData["url"], fit: BoxFit.cover)
+          ),
           Container(
               padding: EdgeInsets.all(5.0),
-              height: 120,
+              height: deviceHeight * 0.12,
               child: Column(children: <Widget>[
                 Expanded(
                     flex: 2,

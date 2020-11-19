@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../routes/image_preview.dart';
-import 'package:allergy/page/recipe.dart';
+import '../page/image_preview.dart';
+import '../page/recipe.dart';
+import '../util/expansion_tile.dart';
+
 class StapleCard {
   Widget createCard(Map stapleData) {
     return _StapleCard(stapleData);
@@ -9,17 +11,18 @@ class StapleCard {
 
 class _StapleCard extends StatelessWidget {
   final Map _stapleData;
-
+  final GlobalKey<AppExpansionTileState> expansionTile = new GlobalKey();
+  String _tileTitle = '原材料詳細';
   _StapleCard(
     this._stapleData,
   );
+
   void _forwardRecipePage(argContext, argStapleData) async {
     Navigator.push(
         argContext,
         MaterialPageRoute(
-          builder: (context) => RecipePage(),
-        )
-    );
+          builder: (context) => RecipePage(title: argStapleData["name"]),
+        ));
   }
 
   @override
@@ -41,7 +44,8 @@ class _StapleCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Row(
+                          Container(
+                              child: Row(
                             children: <Widget>[
                               Expanded(
                                 child: _Image(
@@ -72,13 +76,26 @@ class _StapleCard extends StatelessWidget {
                                       margin: EdgeInsets.only(left: 10),
                                       padding:
                                           EdgeInsets.symmetric(vertical: 5),
-                                      child: Text("・・・" + _stapleData['note']),
+                                      child: Text("あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをん"),
                                     ),
                                   ],
                                 )),
                               ),
                             ],
-                          ),
+                          )),
+                          AppExpansionTile(
+                              key: expansionTile,
+                              title: new Text(this._tileTitle),
+                              //backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
+                              children: <Widget>[
+                                ListTile(
+                                  title: const Text('ひき肉、はちみつ、トマト'),
+                                  onTap: () {
+                                    expansionTile.currentState.collapse();
+                                  },
+                                ),
+
+                              ])
                         ],
                       ),
                     )
@@ -108,7 +125,7 @@ class _Image extends StatelessWidget {
   _Image({this.imageUrl});
 
   final Radius _radius = Radius.circular(20.0);
-  final double _imageHeight = 200;
+  final double _imageHeight = 0.2;
   final double _padding = 2.5;
 
   /// 画像に各種設定を行う
@@ -151,10 +168,11 @@ class _Image extends StatelessWidget {
 
   /// 画像1枚用のウィジェット
   Widget _image1(BuildContext context) {
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return _imageItem(
       context: context,
       url: imageUrl,
-      height: _imageHeight,
+      height: _imageHeight * deviceHeight,
       borderRadius: BorderRadius.all(_radius),
     );
   }

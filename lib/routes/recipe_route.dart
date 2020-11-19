@@ -25,19 +25,21 @@ class _Recipe extends State<Recipe> {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Colors.blue[100],
+        primaryColor: Colors.yellow[100],
       ),
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: choices.length,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(50.0), // here the desired height
+              preferredSize: Size.fromHeight(deviceHeight * 0.06), // here the desired height
               child:AppBar(
                   bottom: ColoredTabBar(
-                    color: Colors.blue[200],
+                    color: Colors.yellow[200],
                     tabBar: TabBar(
                       //isScrollable: true,
                       tabs: choices.map((Choice choice) {

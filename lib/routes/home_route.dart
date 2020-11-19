@@ -34,7 +34,7 @@ class _Home extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(headerTitle: headerTitle),
+      appBar: Header(headerTitle: headerTitle, headerColor:Colors.red[100], headerTitleColor: Colors.white,),
       body: Stack(
           children: <Widget>[
             FutureBuilder(

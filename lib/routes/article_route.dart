@@ -1,7 +1,7 @@
 import 'package:allergy/ui/article_card.dart';
 import 'package:flutter/material.dart';
 import '../header.dart';
-import 'image_preview.dart';
+import '../page/image_preview.dart';
 
 class Article extends StatefulWidget {
   @override
@@ -9,7 +9,7 @@ class Article extends StatefulWidget {
 }
 
 class _Article extends State<Article> {
-  final String headerTitle = '読み物';
+  final String headerTitle = '読みもの';
   List _cardList = [];
 
   @override
@@ -21,8 +21,9 @@ class _Article extends State<Article> {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        appBar: Header(headerTitle: headerTitle),
+        appBar: Header(headerTitle: headerTitle, headerColor: Colors.green[500], headerTitleColor: Colors.white),
         body: Container(
           padding: EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 20),
           child: SingleChildScrollView(
@@ -70,7 +71,7 @@ class _Article extends State<Article> {
                   Card(
                     child: Container(
                         color: Colors.yellow[50],
-                        height: 200,
+                        height: deviceHeight * 0.2,
                         padding: EdgeInsets.all(10.0),
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -85,20 +86,20 @@ class _Article extends State<Article> {
                                     color: Colors.black54),
                               ))),
                           Container(
-                              margin: EdgeInsets.only(top: 20),
+                              margin: EdgeInsets.only(top: deviceHeight * 0.02),
                               child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Expanded(
                                         flex: 4,
                                         child: Image.network(
-                                            "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/mitte83002_TP_V.jpg",
+                                            "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%AB%E3%83%95%E3%82%A7.jpg",
                                             fit: BoxFit.cover)),
                                     Expanded(
                                         flex: 5,
                                         child: Container(
                                             margin: EdgeInsets.only(left: 20),
-                                          height: 100,
+                                          height: deviceHeight * 0.1,
                                           child:Column(children: <Widget>[
                                           Expanded(
                                               flex: 1,
@@ -150,7 +151,7 @@ class _Article extends State<Article> {
       'date': '2020年11月11日',
       'writer': 'ゆゆ',
       "url":
-          "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/mitte83002_TP_V.jpg"
+          "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/%E7%A7%8B.jpg"
     };
     _cardList.add(articleCard.createCard(Data001));
     Map<String, String> Data002 = {
@@ -158,7 +159,7 @@ class _Article extends State<Article> {
       'date': '2020年02月19日',
       'writer': 'ELLY',
       "url":
-          "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/mitte83002_TP_V.jpg"
+          "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/%E5%A4%9A%E8%82%89%E6%A4%8D%E7%89%A9%EF%BC%92.jpg"
     };
     _cardList.add(articleCard.createCard(Data002));
     Map<String, String> Data003 = {
@@ -166,7 +167,7 @@ class _Article extends State<Article> {
       'date': '2019年10月21日',
       'writer': 'GreenSnap編集部',
       "url":
-          "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/mitte83002_TP_V.jpg"
+          "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/%E3%82%AD%E3%83%B3%E3%83%A2%E3%82%AF%E3%82%BB%E3%82%A4.jpg"
     };
     _cardList.add(articleCard.createCard(Data003));
     Map<String, String> Data004 = {
@@ -174,7 +175,7 @@ class _Article extends State<Article> {
       'date': '2020年05月07日',
       'writer': 'GreenSnap編集部',
       "url":
-          "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/mitte83002_TP_V.jpg"
+          "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/%E5%A4%9A%E8%82%89%E6%A4%8D%E7%89%A9.jpg"
     };
     _cardList.add(articleCard.createCard(Data004));
     return _cardList;

@@ -18,19 +18,19 @@ class _RootWidget extends State<RootWidget> {
   // アイコン情報
   final Map _rootWidgetIcons = {
     'ホーム' : {'icon': Icons.home, 'route': Home()},
-    '読み物' : {'icon': Icons.menu_book, 'route': Article()},
+    '読みもの' : {'icon': Icons.menu_book, 'route': Article()},
     '検索' : {'icon': Icons.search, 'route': Search()},
     'レシピ動画' : {'icon': Icons.play_arrow, 'route': Recipe()},
-    'メッセージ' : {'icon': Icons.mail, 'route': Message()},
+    '調べる' : {'icon': Icons.book, 'route': Message()},
   };
 
   // アイコン順番
   final List _footerItemOrder = [
     'ホーム',
-    '読み物',
+    '読みもの',
     '検索',
     'レシピ動画',
-    'メッセージ',
+    '調べる',
   ];
 
   @override

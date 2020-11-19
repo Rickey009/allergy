@@ -49,7 +49,7 @@ class _MaterialCard extends StatelessWidget {
                         color: Colors.black54),
                   ))),
             ),
-            Expanded(flex: 4, child: foo(_materialData["buy"])),
+            Expanded(flex: 4, child: createMaterialList(_materialData["buy"], context)),
           ],
         ),
         Divider(color: Colors.black)
@@ -57,10 +57,11 @@ class _MaterialCard extends StatelessWidget {
     );
   }
 
-  Widget foo(String flg) {
+  Widget createMaterialList(String flg, BuildContext context) {
+    final double deviceHeight = MediaQuery.of(context).size.height;
     if (flg == "true") {
       return Container(
-        height: 20,
+        height: deviceHeight * 0.025,
         child: Container(
             child: Row(children: [
           Image.asset("assets/icons/pareco.png", fit: BoxFit.cover),

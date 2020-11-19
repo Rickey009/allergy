@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import '../page/image_preview.dart';
 import '../util/expansion_tile.dart';
+import '../page/google_map.dart';
 
-class SweetCard {
-  Widget createCard(Map sweetData) {
-    return _SweetCard(sweetData);
+class LocationCard {
+  Widget createCard(Map locationData) {
+    return _LocationCard(locationData);
   }
 }
 
-class _SweetCard extends StatelessWidget {
-  final Map _sweetData;
+class _LocationCard extends StatelessWidget {
+  final Map _locationData;
 
-  _SweetCard(this._sweetData,);
+  _LocationCard(
+    this._locationData,
+  );
+
+  void _forwardRecipePage(argContext, argStapleData) async {
+    Navigator.push(
+        argContext,
+        MaterialPageRoute(
+          builder: (context) => MapPage(locationName: argStapleData["name"], latitude: double.parse(argStapleData["latitude"]), longitude: double.parse(argStapleData["longitude"])),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final double deviceHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return Card(
+        child: InkWell(
+      onTap: () => _forwardRecipePage(context, _locationData),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -29,7 +39,7 @@ class _SweetCard extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding:
-                  EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+                      EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
                   color: Colors.white70,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,8 +47,8 @@ class _SweetCard extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child:
-                            _Image(imageUrl: _sweetData['imageUrlHttps']),
+                            child: _Image(
+                                imageUrl: _locationData['imageUrlHttps']),
                           ),
                           Expanded(
                             child: (Column(
@@ -46,14 +56,14 @@ class _SweetCard extends StatelessWidget {
                               children: <Widget>[
                                 Container(
                                   child: getFavoriteWidgets(
-                                      _sweetData['favorite']),
+                                      _locationData['favorite']),
                                 ),
                                 Container(
 //                                color: Colors.red[50],
                                   margin: EdgeInsets.only(left: 10),
                                   padding: EdgeInsets.symmetric(vertical: 5),
                                   child: Text(
-                                    _sweetData['name'],
+                                    _locationData['name'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -63,27 +73,26 @@ class _SweetCard extends StatelessWidget {
 //                                color: Colors.red[200],
                                   margin: EdgeInsets.only(left: 10),
                                   padding: EdgeInsets.symmetric(vertical: 5),
-                                  child: Text("・・・" + _sweetData['note']),
+                                  child: Text( _locationData['note']),
                                 ),
                                 Container(
 //                                color: Colors.red[200],
                                   margin: EdgeInsets.only(left: 20),
                                   child: Card(
-                                    color: Colors.white,
-                                      shadowColor:Colors.grey,
+                                      color: Colors.white,
+                                      shadowColor: Colors.grey,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(50.0),
+                                            BorderRadius.circular(50.0),
                                       ),
                                       child: Container(
-                                          padding: EdgeInsets.only(top:6, bottom:6, left:6),
+                                          padding: EdgeInsets.only(
+                                              top: 6, bottom: 6, left: 6),
                                           height: deviceHeight * 0.04,
                                           child: Row(children: [
-                                            Image.asset(
-                                                "assets/icons/pareco.png",
-                                                fit: BoxFit.cover),
+                                            Icon(Icons.location_on, color:Colors.grey),
                                             Text(
-                                              "で購入",
+                                              "地図アプリで開く",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.black54),
@@ -103,7 +112,7 @@ class _SweetCard extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 
   Widget getFavoriteWidgets(int argNum) {
@@ -166,10 +175,7 @@ class _Image extends StatelessWidget {
 
   /// 画像1枚用のウィジェット
   Widget _image1(BuildContext context) {
-    final double deviceHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return _imageItem(
       context: context,
       url: imageUrl,

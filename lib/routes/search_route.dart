@@ -1,5 +1,6 @@
 import 'package:allergy/tabs/restaurant_tab.dart';
 import 'package:allergy/tabs/sweet_tab.dart';
+import 'package:allergy/tabs/location_tab.dart';
 import 'package:flutter/material.dart';
 import '../model/meals_card_model.dart';
 
@@ -25,6 +26,7 @@ class _Search extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.blue[100],
@@ -33,11 +35,12 @@ class _Search extends State<Search> {
       home: DefaultTabController(
         length: choices.length,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(70.0), // here the desired height
+              preferredSize: Size.fromHeight(deviceHeight * 0.06), // here the desired height
               child:AppBar(
                   title: Center(
-                    child: Text("検索"),
+                    child: Text(""),
                   ),
                   bottom: ColoredTabBar(
                     color: Colors.blue[200],
@@ -78,7 +81,7 @@ class Choice {
 List<Choice> choices = <Choice>[
   Choice(title: 'お菓子', icon: Icons.directions_car, page: Sweet()),
   Choice(title: '食事', icon: Icons.directions_bike, page: Restaurant()),
-  Choice(title: 'この場所', icon: Icons.directions_boat, page: Restaurant()),
+  Choice(title: 'この場所', icon: Icons.directions_boat, page: Location()),
 ];
 
 class ColoredTabBar extends StatelessWidget implements PreferredSizeWidget {

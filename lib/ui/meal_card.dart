@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../routes/image_preview.dart';
+import '../page/image_preview.dart';
 
 class MealCard {
 
@@ -107,8 +107,7 @@ class _Image extends StatelessWidget {
   _Image({this.imageUrl});
 
   final Radius _radius = Radius.circular(20.0);
-  final double _imageHeight = 200;
-  final double _padding = 2.5;
+  final double _imageHeight = 0.2;
 
   /// 画像に各種設定を行う
   /// 
@@ -154,10 +153,11 @@ class _Image extends StatelessWidget {
 
   /// 画像1枚用のウィジェット
   Widget _image1(BuildContext context){
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return _imageItem(
       context: context,
       url: imageUrl,
-      height: _imageHeight,
+      height: _imageHeight * deviceHeight,
       borderRadius: BorderRadius.all(_radius),
     );
   }
