@@ -11,7 +11,6 @@ class ApiDao {
   /// 取得したJsonをDecodeして返却する
   Future getJson(String url, FormData param, List headers) async {
     var result = await httpClient.post(url, body: json.encode(param.toJson()), headers: {headers[0]: headers[1]});
-    //var result = await httpClient.post(url, body: "", headers: {headers[0]: headers[1]});
     return jsonDecode(result.body);
   }
 }

@@ -7,9 +7,9 @@ import '../util/convert_text.dart';
 import '../http/form_data.dart';
 
 class StapleCardModel {
-  Future<List> createCardList(String apiName) async{
+  Future<List> createCardList(String argFlg) async{
     List _cardList = [];
-    final _staple = await getStapleJson(apiName);
+    final _staple = await getStapleJson(argFlg);
 
     StapleCard stapleCard = StapleCard();
     for (var i = 0; i < _staple.length; i++) {
@@ -22,11 +22,11 @@ class StapleCardModel {
   /// 
   /// [_userTimelinePath]のJsonデータを取得する。
   /// 取得した[jsonData]から必要な情報を取得し、[_tweets]に詰めて返却する。
-  Future<List> getStapleJson(String apiName) async{
+  Future<List> getStapleJson(String argFlg) async{
     FormData formData = FormData();
-    formData.param001 = "3";
+    formData.param001 = argFlg;
 
-    var jsonData = await ApiDao().getJson('https://nmx516t6g4.execute-api.ap-northeast-1.amazonaws.com/PFM_POCK/sample', formData, ['content-type', 'application/json']);
+    var jsonData = await ApiDao().getJson('https://nmx516t6g4.execute-api.ap-northeast-1.amazonaws.com/PFM_POCK/sample3', formData, ['content-type', 'application/json']);
     jsonData = jsonDecode(jsonData["body"]);
     List _staple = [];
 
@@ -34,9 +34,12 @@ class StapleCardModel {
 
       _staple.add(
           {
-            'name': jsonData[i]['sweet']['name'],
-            'note':  jsonData[i]['sweet']['note'],
-            'imageUrlHttps': jsonData[i]['sweet']['image_url'],
+            "recipeId": jsonData[i]['recipe_id'].toString(),
+            'name': jsonData[i]['staple']['name'],
+            'material':  jsonData[i]['staple']['material'],
+            'note': jsonData[i]['staple']['note'],
+            'imageUrlHttps': jsonData[i]['staple']['image_url'],
+            'movieUrl': jsonData[i]['staple']['movie_url'],
             'favorite' : jsonData[i]['favorite']
           }
       );

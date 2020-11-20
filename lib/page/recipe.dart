@@ -1,17 +1,26 @@
+import 'package:allergy/ds/recipe_data.dart';
+import 'package:allergy/model/recipes_model.dart';
 import 'package:allergy/ui/material_item.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class RecipePage extends StatefulWidget {
   final String title;
-  RecipePage({this.title});
+  final String url;
+  final String id;
+
+  RecipePage({this.title, this.url, this.id});
+
   @override
-  _RecipeState createState() => _RecipeState(title:title);
+  _RecipeState createState() => _RecipeState(title: title, url: url, id: id);
 }
 
 class _RecipeState extends State<RecipePage> {
   final String title;
-  _RecipeState({this.title});
+  final String url;
+  final String id;
+
+  _RecipeState({this.title, this.url, this.id});
 
   VideoPlayerController _controller;
   List _cardList = [];
@@ -19,17 +28,17 @@ class _RecipeState extends State<RecipePage> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        "https://pfm-poc.s3-ap-northeast-1.amazonaws.com/recipe001.mp4");
+    _initLoading();
+    _controller = VideoPlayerController.network(url);
     _controller.initialize().then((_) {
       // 最初のフレームを描画するため初期化後に更新
-      setState(() {});
+      // setState(() {});
     });
-    _listLoad();
   }
 
-  Future<void> _listLoad() async {
-    _cardList = await createCardList();
+  Future<void> _initLoading() async {
+    RecipeData _data = await RecipeModel().createRecipeData(id);
+    _cardList = await createCardList(_data);
   }
 
   @override
@@ -38,39 +47,14 @@ class _RecipeState extends State<RecipePage> {
     super.dispose();
   }
 
-  Future<List> createCardList() async {
+  Future<List> createCardList(RecipeData argData) async {
     List _cardList = [];
+    final _materials = argData.materialList;
+
     MaterialCard materialCard = MaterialCard();
-    Map<String, String> frameworks = {
-      'name': 'パスタ',
-      'amount': '500g',
-      'buy': 'true',
-    };
-    _cardList.add(materialCard.createCard(frameworks));
-    frameworks = {
-      'name': 'トマト',
-      'amount': '100g',
-      'buy': 'false',
-    };
-    _cardList.add(materialCard.createCard(frameworks));
-    frameworks = {
-      'name': 'ひき肉',
-      'amount': '50g',
-      'buy': 'true',
-    };
-    _cardList.add(materialCard.createCard(frameworks));
-    frameworks = {
-      'name': 'チーズ',
-      'amount': '10g',
-      'buy': 'true',
-    };
-    _cardList.add(materialCard.createCard(frameworks));
-    frameworks = {
-      'name': '酒',
-      'amount': '20ml',
-      'buy': 'false',
-    };
-    _cardList.add(materialCard.createCard(frameworks));
+    for (var i = 0; i < _materials.length; i++) {
+      _cardList.add(materialCard.createCard(_materials[i]));
+    }
     return _cardList;
   }
 
@@ -82,8 +66,7 @@ class _RecipeState extends State<RecipePage> {
         ),
         body: Container(
             constraints: BoxConstraints.expand(),
-            padding: EdgeInsets.only(
-                left: 20, right: 20, bottom: 10, top: 20),
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 20),
             child: Card(
                 child: Container(
                     padding: EdgeInsets.only(
@@ -141,7 +124,7 @@ class _RecipeState extends State<RecipePage> {
                           Container(
                               margin: EdgeInsets.only(top: 20),
                               child: FutureBuilder(
-                                  future: _listLoad(),
+                                  future: _initLoading(),
                                   builder: (BuildContext context,
                                       AsyncSnapshot snapshot) {
                                     if (snapshot.connectionState ==

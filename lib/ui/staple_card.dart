@@ -21,7 +21,7 @@ class _StapleCard extends StatelessWidget {
     Navigator.push(
         argContext,
         MaterialPageRoute(
-          builder: (context) => RecipePage(title: argStapleData["name"]),
+          builder: (context) => RecipePage(title: argStapleData["name"], url: argStapleData["movieUrl"], id: argStapleData["recipeId"]),
         ));
   }
 
@@ -76,7 +76,7 @@ class _StapleCard extends StatelessWidget {
                                       margin: EdgeInsets.only(left: 10),
                                       padding:
                                           EdgeInsets.symmetric(vertical: 5),
-                                      child: Text("あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをん"),
+                                      child: Text(_stapleData['note']),
                                     ),
                                   ],
                                 )),
@@ -89,7 +89,7 @@ class _StapleCard extends StatelessWidget {
                               //backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
                               children: <Widget>[
                                 ListTile(
-                                  title: const Text('ひき肉、はちみつ、トマト'),
+                                  title: Text(_stapleData['material']),
                                   onTap: () {
                                     expansionTile.currentState.collapse();
                                   },

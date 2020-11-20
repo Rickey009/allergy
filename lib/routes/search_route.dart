@@ -1,4 +1,4 @@
-import 'package:allergy/tabs/restaurant_tab.dart';
+import 'package:allergy/tabs/food_tab.dart';
 import 'package:allergy/tabs/sweet_tab.dart';
 import 'package:allergy/tabs/location_tab.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +80,7 @@ class Choice {
 
 List<Choice> choices = <Choice>[
   Choice(title: 'お菓子', icon: Icons.directions_car, page: Sweet()),
-  Choice(title: '食事', icon: Icons.directions_bike, page: Restaurant()),
+  Choice(title: '食事', icon: Icons.directions_bike, page: Food()),
   Choice(title: 'この場所', icon: Icons.directions_boat, page: Location()),
 ];
 

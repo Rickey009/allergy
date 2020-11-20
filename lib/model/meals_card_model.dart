@@ -33,7 +33,7 @@ class MealsCardModel {
   /// 取得した[jsonData]から必要な情報を取得し、[_tweets]に詰めて返却する。
   Future<List> getMealsJson(String apiName) async{
     FormData formData = FormData();
-    formData.param001 = "2";
+    formData.param001 = "diary";
 
     var jsonData = await ApiDao().getJson('https://nmx516t6g4.execute-api.ap-northeast-1.amazonaws.com/PFM_POCK/sample', formData, ['content-type', 'application/json']);
     jsonData = jsonDecode(jsonData["body"]);

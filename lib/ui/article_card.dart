@@ -8,7 +8,7 @@ class ArticleCard {
 
 class _ArticleCard extends StatelessWidget {
   final Map _articleData;
-
+  Map get getArticleData => _articleData;
   _ArticleCard(
     this._articleData,
   );

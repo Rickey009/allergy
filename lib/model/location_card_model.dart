@@ -23,9 +23,9 @@ class LocationCardModel {
   /// 取得した[jsonData]から必要な情報を取得し、[_tweets]に詰めて返却する。
   Future<List> getLocationJson(String apiName) async{
     FormData formData = FormData();
-    formData.param001 = "4";
+    formData.param001 = "location";
 
-    var jsonData = await ApiDao().getJson('https://nmx516t6g4.execute-api.ap-northeast-1.amazonaws.com/PFM_POCK/sample', formData, ['content-type', 'application/json']);
+    var jsonData = await ApiDao().getJson('https://nmx516t6g4.execute-api.ap-northeast-1.amazonaws.com/PFM_POCK/sample2', formData, ['content-type', 'application/json']);
     jsonData = jsonDecode(jsonData["body"]);
     List _location = [];
 

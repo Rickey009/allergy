@@ -2,13 +2,20 @@ import 'package:allergy/model/staple_card_model.dart';
 import 'package:flutter/material.dart';
 
 class Staple extends StatefulWidget {
+  final String prmFlg;
+  Staple({
+    this.prmFlg
+  });
   @override
-  _Staple createState() => _Staple();
+  _Staple createState() => _Staple(prmFlg: prmFlg);
 }
 
 class _Staple extends State<Staple> {
   List _cardList = List<StapleCardModel>();
-
+  final String prmFlg;
+  _Staple({
+    this.prmFlg
+  });
   @override
   void initState() {
     super.initState();
@@ -17,7 +24,7 @@ class _Staple extends State<Staple> {
   }
 
   Future<void> _load() async {
-    _cardList = await StapleCardModel().createCardList('home_timeline');
+    _cardList = await StapleCardModel().createCardList(prmFlg);
   }
 
   @override

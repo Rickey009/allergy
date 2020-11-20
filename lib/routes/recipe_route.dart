@@ -75,9 +75,9 @@ class Choice {
 }
 
 List<Choice> choices = <Choice>[
-  Choice(title: '主食', icon: Icons.directions_car, page: Staple()),
-  Choice(title: '新着', icon: Icons.directions_bike, page: Restaurant()),
-  Choice(title: 'お気に入り', icon: Icons.directions_boat, page: Restaurant()),
+  Choice(title: '主食', icon: Icons.directions_car, page: Staple(prmFlg: "staple")),
+  Choice(title: '新着', icon: Icons.directions_bike, page: Staple(prmFlg: "new")),
+  Choice(title: 'お気に入り', icon: Icons.directions_boat, page: Staple(prmFlg: "fav")),
 ];
 
 class ColoredTabBar extends StatelessWidget implements PreferredSizeWidget {
