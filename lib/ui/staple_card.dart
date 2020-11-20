@@ -13,6 +13,7 @@ class _StapleCard extends StatelessWidget {
   final Map _stapleData;
   final GlobalKey<AppExpansionTileState> expansionTile = new GlobalKey();
   String _tileTitle = '原材料詳細';
+
   _StapleCard(
     this._stapleData,
   );
@@ -21,7 +22,10 @@ class _StapleCard extends StatelessWidget {
     Navigator.push(
         argContext,
         MaterialPageRoute(
-          builder: (context) => RecipePage(title: argStapleData["name"], url: argStapleData["movieUrl"], id: argStapleData["recipeId"]),
+          builder: (context) => RecipePage(
+              title: argStapleData["name"],
+              url: argStapleData["movieUrl"],
+              id: argStapleData["recipeId"]),
         ));
   }
 
@@ -89,12 +93,12 @@ class _StapleCard extends StatelessWidget {
                               //backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
                               children: <Widget>[
                                 ListTile(
-                                  title: Text(_stapleData['material']),
+                                  title:
+                                      getMaterialChips(_stapleData['material']),
                                   onTap: () {
                                     expansionTile.currentState.collapse();
                                   },
                                 ),
-
                               ])
                         ],
                       ),
@@ -116,6 +120,20 @@ class _StapleCard extends StatelessWidget {
       children: list,
       mainAxisAlignment: MainAxisAlignment.center,
     );
+  }
+
+  Widget getMaterialChips(String argMaterials) {
+    List materialStringList = argMaterials.split(',');
+    List<Widget> list = new List<Widget>();
+    for (var i = 0; i < materialStringList.length; i++) {
+      list.add(Chip(
+        backgroundColor: Colors.yellow[400],
+        labelPadding: EdgeInsets.all(5.0),
+        label: Text(materialStringList[i]),
+        labelStyle: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
+      ));
+    }
+    return new Wrap(children: list, spacing: 6.0);
   }
 }
 

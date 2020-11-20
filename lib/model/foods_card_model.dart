@@ -9,9 +9,9 @@ class FoodsCardModel {
     List _cardList = [];
     final _foods = await getSweetsJson(apiName);
 
-    FoodCard sweetCard = FoodCard();
+    FoodCard foodCard = FoodCard();
     for (var i = 0; i < _foods.length; i++) {
-      _cardList.add(sweetCard.createCard(_foods[i]));
+      _cardList.add(foodCard.createCard(_foods[i]));
     }
     return _cardList;
   }
@@ -30,6 +30,7 @@ class FoodsCardModel {
           {
             'name': jsonData[i]['food']['name'],
             'note':  jsonData[i]['food']['note'],
+            'material':  jsonData[i]['food']['material'],
             'imageUrlHttps': jsonData[i]['food']['image_url'],
             'favorite' : jsonData[i]['favorite']
           }

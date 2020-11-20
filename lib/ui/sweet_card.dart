@@ -10,11 +10,13 @@ class SweetCard {
 
 class _SweetCard extends StatelessWidget {
   final Map _sweetData;
-
+  final GlobalKey<AppExpansionTileState> expansionTile = new GlobalKey();
+  String _tileTitle = '原材料詳細';
   _SweetCard(this._sweetData,);
 
   @override
   Widget build(BuildContext context) {
+
     final double deviceHeight = MediaQuery
         .of(context)
         .size
@@ -63,7 +65,7 @@ class _SweetCard extends StatelessWidget {
 //                                color: Colors.red[200],
                                   margin: EdgeInsets.only(left: 10),
                                   padding: EdgeInsets.symmetric(vertical: 5),
-                                  child: Text("・・・" + _sweetData['note']),
+                                  child: Text(_sweetData['note']),
                                 ),
                                 Container(
 //                                color: Colors.red[200],
@@ -95,6 +97,19 @@ class _SweetCard extends StatelessWidget {
                           ),
                         ],
                       ),
+                      AppExpansionTile(
+                          key: expansionTile,
+                          title: new Text(this._tileTitle),
+                          //backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
+                          children: <Widget>[
+                            ListTile(
+                              title:
+                              getMaterialChips(_sweetData['material']),
+                              onTap: () {
+                                expansionTile.currentState.collapse();
+                              },
+                            ),
+                          ])
                     ],
                   ),
                 )
@@ -115,6 +130,20 @@ class _SweetCard extends StatelessWidget {
       children: list,
       mainAxisAlignment: MainAxisAlignment.center,
     );
+  }
+
+  Widget getMaterialChips(String argMaterials) {
+    List materialStringList = argMaterials.split(',');
+    List<Widget> list = new List<Widget>();
+    for (var i = 0; i < materialStringList.length; i++) {
+      list.add(Chip(
+        backgroundColor: Colors.blue[400],
+        labelPadding: EdgeInsets.all(5.0),
+        label: Text(materialStringList[i]),
+        labelStyle: TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
+      ));
+    }
+    return new Wrap(children: list, spacing: 6.0);
   }
 }
 

@@ -36,6 +36,7 @@ class SweetsCardModel {
           {
             'name': jsonData[i]['sweet']['name'],
             'note':  jsonData[i]['sweet']['note'],
+            'material':  jsonData[i]['sweet']['material'],
             'imageUrlHttps': jsonData[i]['sweet']['image_url'],
             'favorite' : jsonData[i]['favorite']
           }

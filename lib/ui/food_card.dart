@@ -9,12 +9,14 @@ class FoodCard {
 }
 
 class _FoodCard extends StatelessWidget {
-  final Map _foodData;
-
-  _FoodCard(this._foodData,);
+  final Map _foodCard;
+  final GlobalKey<AppExpansionTileState> expansionTile = new GlobalKey();
+  String _tileTitle = '原材料詳細';
+  _FoodCard(this._foodCard,);
 
   @override
   Widget build(BuildContext context) {
+
     final double deviceHeight = MediaQuery
         .of(context)
         .size
@@ -38,7 +40,7 @@ class _FoodCard extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child:
-                            _Image(imageUrl: _foodData['imageUrlHttps']),
+                            _Image(imageUrl: _foodCard['imageUrlHttps']),
                           ),
                           Expanded(
                             child: (Column(
@@ -46,14 +48,14 @@ class _FoodCard extends StatelessWidget {
                               children: <Widget>[
                                 Container(
                                   child: getFavoriteWidgets(
-                                      _foodData['favorite']),
+                                      _foodCard['favorite']),
                                 ),
                                 Container(
 //                                color: Colors.red[50],
                                   margin: EdgeInsets.only(left: 10),
                                   padding: EdgeInsets.symmetric(vertical: 5),
                                   child: Text(
-                                    _foodData['name'],
+                                    _foodCard['name'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -63,7 +65,7 @@ class _FoodCard extends StatelessWidget {
 //                                color: Colors.red[200],
                                   margin: EdgeInsets.only(left: 10),
                                   padding: EdgeInsets.symmetric(vertical: 5),
-                                  child: Text("・・・" + _foodData['note']),
+                                  child: Text(_foodCard['note']),
                                 ),
                                 Container(
 //                                color: Colors.red[200],
@@ -95,6 +97,19 @@ class _FoodCard extends StatelessWidget {
                           ),
                         ],
                       ),
+                      AppExpansionTile(
+                          key: expansionTile,
+                          title: new Text(this._tileTitle),
+                          //backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
+                          children: <Widget>[
+                            ListTile(
+                              title:
+                              getMaterialChips(_foodCard['material']),
+                              onTap: () {
+                                expansionTile.currentState.collapse();
+                              },
+                            ),
+                          ])
                     ],
                   ),
                 )
@@ -115,6 +130,20 @@ class _FoodCard extends StatelessWidget {
       children: list,
       mainAxisAlignment: MainAxisAlignment.center,
     );
+  }
+
+  Widget getMaterialChips(String argMaterials) {
+    List materialStringList = argMaterials.split(',');
+    List<Widget> list = new List<Widget>();
+    for (var i = 0; i < materialStringList.length; i++) {
+      list.add(Chip(
+        backgroundColor: Colors.blue[400],
+        labelPadding: EdgeInsets.all(5.0),
+        label: Text(materialStringList[i]),
+        labelStyle: TextStyle(color: Colors.white, fontStyle: FontStyle.italic),
+      ));
+    }
+    return new Wrap(children: list, spacing: 6.0);
   }
 }
 
