@@ -88,7 +88,7 @@ class _LocationCard extends StatelessWidget {
                                       child: Container(
                                           padding: EdgeInsets.only(
                                               top: 6, bottom: 6, left: 6),
-                                          height: deviceHeight * 0.04,
+                                          height: deviceHeight * 0.05,
                                           child: Row(children: [
                                             Icon(Icons.location_on, color:Colors.grey),
                                             Text(

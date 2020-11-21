@@ -79,17 +79,19 @@ class _SweetCard extends StatelessWidget {
                                       ),
                                       child: Container(
                                           padding: EdgeInsets.only(top:6, bottom:6, left:6),
-                                          height: deviceHeight * 0.04,
-                                          child: Row(children: [
-                                            Image.asset(
-                                                "assets/icons/pareco.png",
-                                                fit: BoxFit.cover),
-                                            Text(
-                                              "で購入",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Colors.black54),
-                                            )
+                                          height: deviceHeight * 0.05,
+                                          child:  Row(children: [
+                                            Expanded(
+                                                child: Image.asset(
+                                                    "assets/icons/pareco.png",
+                                                    fit: BoxFit.cover)),
+                                            Expanded(
+                                                child: Text(
+                                                  "で購入",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.normal,
+                                                      color: Colors.black54),
+                                                ))
                                           ]))),
                                 ),
                               ],

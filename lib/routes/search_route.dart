@@ -37,7 +37,7 @@ class _Search extends State<Search> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(deviceHeight * 0.06), // here the desired height
+              preferredSize: Size.fromHeight(deviceHeight * 0.1), // here the desired height
               child:AppBar(
                   title: Center(
                     child: Text(""),

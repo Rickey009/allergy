@@ -59,7 +59,7 @@ class _Article extends State<Article> {
                                   childAspectRatio:
                                       MediaQuery.of(context).size.width /
                                           (MediaQuery.of(context).size.height /
-                                              1.5),
+                                              1.2),
                                 ),
                                 itemBuilder: (BuildContext context, int index) {
                                   return _cardList[index];
@@ -67,7 +67,7 @@ class _Article extends State<Article> {
                             Card(
                               child: Container(
                                   color: Colors.yellow[50],
-                                  height: deviceHeight * 0.2,
+                               //   height: deviceHeight * 0.3,
                                   padding: EdgeInsets.all(10.0),
                                   child: Column(children: <Widget>[
                                     SizedBox(
@@ -78,7 +78,7 @@ class _Article extends State<Article> {
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w900,
-                                              fontSize: 25,
+ //                                             fontSize: 25,
                                               color: Colors.black54),
                                         ))),
                                     Container(
@@ -100,12 +100,11 @@ class _Article extends State<Article> {
                                                   child: Container(
                                                       margin: EdgeInsets.only(
                                                           left: 20),
-                                                      height:
-                                                          deviceHeight * 0.1,
+                                                      height: deviceHeight * 0.15,
                                                       child: Column(
                                                           children: <Widget>[
                                                             Expanded(
-                                                                flex: 1,
+                                                                flex: 2,
                                                                 child: SizedBox(
                                                                     width: double
                                                                         .infinity,

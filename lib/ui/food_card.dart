@@ -12,15 +12,14 @@ class _FoodCard extends StatelessWidget {
   final Map _foodCard;
   final GlobalKey<AppExpansionTileState> expansionTile = new GlobalKey();
   String _tileTitle = '原材料詳細';
-  _FoodCard(this._foodCard,);
+
+  _FoodCard(
+    this._foodCard,
+  );
 
   @override
   Widget build(BuildContext context) {
-
-    final double deviceHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return Card(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +30,7 @@ class _FoodCard extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding:
-                  EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+                      EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
                   color: Colors.white70,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,16 +38,15 @@ class _FoodCard extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child:
-                            _Image(imageUrl: _foodCard['imageUrlHttps']),
+                            child: _Image(imageUrl: _foodCard['imageUrlHttps']),
                           ),
                           Expanded(
                             child: (Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Container(
-                                  child: getFavoriteWidgets(
-                                      _foodCard['favorite']),
+                                  child:
+                                      getFavoriteWidgets(_foodCard['favorite']),
                                 ),
                                 Container(
 //                                color: Colors.red[50],
@@ -72,24 +70,27 @@ class _FoodCard extends StatelessWidget {
                                   margin: EdgeInsets.only(left: 20),
                                   child: Card(
                                       color: Colors.white,
-                                      shadowColor:Colors.grey,
+                                      shadowColor: Colors.grey,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(50.0),
+                                            BorderRadius.circular(50.0),
                                       ),
                                       child: Container(
-                                          padding: EdgeInsets.only(top:6, bottom:6, left:6),
-                                          height: deviceHeight * 0.04,
+                                          padding: EdgeInsets.only(
+                                              top: 6, bottom: 6, left: 6),
+                                          height: deviceHeight * 0.05,
                                           child: Row(children: [
-                                            Image.asset(
-                                                "assets/icons/pareco.png",
-                                                fit: BoxFit.cover),
-                                            Text(
+                                            Expanded(
+                                                child: Image.asset(
+                                                    "assets/icons/pareco.png",
+                                                    fit: BoxFit.cover)),
+                                            Expanded(
+                                                child: Text(
                                               "で購入",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.black54),
-                                            )
+                                            ))
                                           ]))),
                                 ),
                               ],
@@ -103,8 +104,7 @@ class _FoodCard extends StatelessWidget {
                           //backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
                           children: <Widget>[
                             ListTile(
-                              title:
-                              getMaterialChips(_foodCard['material']),
+                              title: getMaterialChips(_foodCard['material']),
                               onTap: () {
                                 expansionTile.currentState.collapse();
                               },
@@ -195,10 +195,7 @@ class _Image extends StatelessWidget {
 
   /// 画像1枚用のウィジェット
   Widget _image1(BuildContext context) {
-    final double deviceHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return _imageItem(
       context: context,
       url: imageUrl,

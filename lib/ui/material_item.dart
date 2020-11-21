@@ -49,7 +49,9 @@ class _MaterialCard extends StatelessWidget {
                         color: Colors.black54),
                   ))),
             ),
-            Expanded(flex: 4, child: createMaterialList(_materialData["buy"], context)),
+            Expanded(
+                flex: 4,
+                child: createMaterialList(_materialData["buy"], context)),
           ],
         ),
         Divider(color: Colors.black)
@@ -61,17 +63,21 @@ class _MaterialCard extends StatelessWidget {
     final double deviceHeight = MediaQuery.of(context).size.height;
     if (flg == "true") {
       return Container(
-        height: deviceHeight * 0.025,
-        child: Container(
-            child: Row(children: [
-          Image.asset("assets/icons/pareco.png", fit: BoxFit.cover),
-          Text(
-            "で購入",
-            style:
-                TextStyle(fontWeight: FontWeight.normal, color: Colors.black54),
-          )
-        ])),
-      );
+
+          height: deviceHeight * 0.04,
+          child: Row(children: [
+            Expanded(
+                child: Image.asset(
+                    "assets/icons/pareco.png",
+                    fit: BoxFit.cover)),
+            Expanded(
+                child: Text(
+                  "で購入",
+                  style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black54),
+                ))
+          ]));
     } else {
       return Container(); // Empty Container Widget
     }

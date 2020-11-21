@@ -22,15 +22,15 @@ class _ArticleCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: deviceHeight * 0.15,
+            height: deviceHeight * 0.2,
           child:Image.network(_articleData["url"], fit: BoxFit.cover)
           ),
           Container(
               padding: EdgeInsets.all(5.0),
-              height: deviceHeight * 0.12,
+              height: deviceHeight * 0.15,
               child: Column(children: <Widget>[
                 Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: SizedBox(
                         width: double.infinity,
                         child: Container(
@@ -39,7 +39,7 @@ class _ArticleCard extends StatelessWidget {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontSize: 15,
+        //                      fontSize: 15,
                               color: Colors.grey),
                         )))),
                 Expanded(
@@ -49,15 +49,15 @@ class _ArticleCard extends StatelessWidget {
                         child: Container(
                             child: Text(
                           _articleData["title"],
-                          textAlign: TextAlign.left,
-                          maxLines: 3,
+                          maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontSize: 18,
+        //                      fontSize: 18,
                               color: Colors.black54),
                         )))),
                 Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: SizedBox(
                         width: double.infinity,
                         child: Container(
@@ -66,7 +66,7 @@ class _ArticleCard extends StatelessWidget {
                           textAlign: TextAlign.end,
                           style: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontSize: 15,
+         //                     fontSize: 15,
                               color: Colors.black54),
                         )))),
               ]))
