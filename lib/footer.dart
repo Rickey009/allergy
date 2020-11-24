@@ -4,7 +4,7 @@ import 'routes/home_route.dart';
 import 'routes/article_route.dart';
 import 'routes/search_route.dart';
 import 'routes/recipe_route.dart';
-import 'routes/message_route.dart';
+import 'routes/lookup_route.dart';
 
 class RootWidget extends StatefulWidget {
   @override
@@ -19,16 +19,16 @@ class _RootWidget extends State<RootWidget> {
   final Map _rootWidgetIcons = {
     'ホーム' : {'icon': Icons.home, 'route': Home()},
     '読みもの' : {'icon': Icons.menu_book, 'route': Article()},
-    '検索' : {'icon': Icons.search, 'route': Search()},
+    '買いもの' : {'icon': Icons.shopping_cart, 'route': Search()},
     'レシピ動画' : {'icon': Icons.play_arrow, 'route': Recipe()},
-    '調べる' : {'icon': Icons.book, 'route': Message()},
+    '調べる' : {'icon': Icons.search, 'route': Lookup()},
   };
 
   // アイコン順番
   final List _footerItemOrder = [
     'ホーム',
     '読みもの',
-    '検索',
+    '買いもの',
     'レシピ動画',
     '調べる',
   ];
