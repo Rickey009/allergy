@@ -19,7 +19,7 @@ class _RootWidget extends State<RootWidget> {
   final Map _rootWidgetIcons = {
     'ホーム' : {'icon': Icons.home, 'route': Home()},
     '読みもの' : {'icon': Icons.menu_book, 'route': Article()},
-    '買いもの' : {'icon': Icons.shopping_cart, 'route': Search()},
+    '他の人の食事' : {'icon': Icons.search, 'route': Search()},
     'レシピ動画' : {'icon': Icons.play_arrow, 'route': Recipe()},
     '調べる' : {'icon': Icons.search, 'route': Lookup()},
   };
@@ -28,7 +28,7 @@ class _RootWidget extends State<RootWidget> {
   final List _footerItemOrder = [
     'ホーム',
     '読みもの',
-    '買いもの',
+    '他の人の食事',
     'レシピ動画',
     '調べる',
   ];

@@ -38,6 +38,7 @@ class LocationCardModel {
             'longitude': jsonData[i]['shop']['longitude'],
             'note':  jsonData[i]['shop']['note'],
             'imageUrlHttps': jsonData[i]['shop']['image_url'],
+            'tel': jsonData[i]['shop']['tel'],
             'favorite' : jsonData[i]['favorite']
           }
       );

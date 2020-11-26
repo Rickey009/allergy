@@ -1,6 +1,5 @@
+import 'package:allergy/model/sweets_card_model.dart';
 import 'package:flutter/material.dart';
-import '../header.dart';
-import '../model/twitter_card_model.dart';
 
 class Restaurant extends StatefulWidget {
   @override
@@ -8,7 +7,7 @@ class Restaurant extends StatefulWidget {
 }
 
 class _Restaurant extends State<Restaurant> {
-  List _cardList = List<TwitterCardModel>();
+  List _cardList = List<SweetsCardModel>();
   var _textFieldFocusNode;
   var _inputController = TextEditingController();
   var _chipList = List<Chip>();
@@ -23,7 +22,7 @@ class _Restaurant extends State<Restaurant> {
   }
 
   Future<void> _load() async {
-    _cardList = await TwitterCardModel().createCardList('home_timeline');
+    _cardList = await SweetsCardModel().createCardList('home_timeline');
   }
 
 
@@ -65,9 +64,9 @@ class _Restaurant extends State<Restaurant> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset:false,
-        body: new Column(
+        body:Column(
             children: <Widget>[
-              new Expanded(
+              Expanded(
                   child: FutureBuilder(
                       future: _load(),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -95,11 +94,11 @@ class _Restaurant extends State<Restaurant> {
                       focusNode: _textFieldFocusNode,
                       autofocus: false,
                       controller: _inputController,
-                      style: new TextStyle(
+                      style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.black,
                       ),
-                      decoration: new InputDecoration(
+                      decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: '食材・料理名で探す',
                       ),

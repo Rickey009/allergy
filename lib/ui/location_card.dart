@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.Dart';
 import '../page/image_preview.dart';
-import '../util/expansion_tile.dart';
 import '../page/google_map.dart';
 
 class LocationCard {
@@ -20,7 +20,10 @@ class _LocationCard extends StatelessWidget {
     Navigator.push(
         argContext,
         MaterialPageRoute(
-          builder: (context) => MapPage(locationName: argStapleData["name"], latitude: double.parse(argStapleData["latitude"]), longitude: double.parse(argStapleData["longitude"])),
+          builder: (context) => MapPage(
+              locationName: argStapleData["name"],
+              latitude: double.parse(argStapleData["latitude"]),
+              longitude: double.parse(argStapleData["longitude"])),
         ));
   }
 
@@ -51,56 +54,98 @@ class _LocationCard extends StatelessWidget {
                                 imageUrl: _locationData['imageUrlHttps']),
                           ),
                           Expanded(
-                            child: (Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: getFavoriteWidgets(
-                                      _locationData['favorite']),
-                                ),
-                                Container(
+                            child: Container(
+                                height: deviceHeight * 0.2,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          child: getFavoriteWidgets(
+                                              _locationData['favorite']),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Container(
 //                                color: Colors.red[50],
-                                  margin: EdgeInsets.only(left: 10),
-                                  padding: EdgeInsets.symmetric(vertical: 5),
-                                  child: Text(
-                                    _locationData['name'],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Container(
+                                          margin: EdgeInsets.only(left: 10),
+                                          child: Text(
+                                            _locationData['name'],
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Container(
 //                                color: Colors.red[200],
-                                  margin: EdgeInsets.only(left: 10),
-                                  padding: EdgeInsets.symmetric(vertical: 5),
-                                  child: Text( _locationData['note']),
-                                ),
-                                Container(
+                                          margin: EdgeInsets.only(left: 10),
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: InkWell(
+                                            child: Text(_locationData['tel'], style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                //                      fontSize: 15,
+                                                color: Colors.lightBlue)),
+                                            onTap: () async {
+                                              String url = "tel:" + "08056128450";
+                                              if (await canLaunch(url)) {
+                                                await launch(url);
+                                              } else {
+                                                throw 'Could not launch $url';
+                                              }
+                                            },
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Container(
 //                                color: Colors.red[200],
-                                  margin: EdgeInsets.only(left: 20),
-                                  child: Card(
-                                      color: Colors.white,
-                                      shadowColor: Colors.grey,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(50.0),
-                                      ),
-                                      child: Container(
-                                          padding: EdgeInsets.only(
-                                              top: 6, bottom: 6, left: 6),
-                                          height: deviceHeight * 0.05,
-                                          child: Row(children: [
-                                            Icon(Icons.location_on, color:Colors.grey),
-                                            Text(
-                                              "地図アプリで開く",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Colors.black54),
-                                            )
-                                          ]))),
-                                ),
-                              ],
-                            )),
+                                          margin: EdgeInsets.only(left: 10),
+                                          child: Text(_locationData['note']),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Container(
+//                                color: Colors.red[200],
+                                          margin: EdgeInsets.only(left: 10),
+                                          child: Text("ここから２００m"),
+                                        )),
+                                    Expanded(
+                                        flex: 2,
+                                        child: Container(
+//                                color: Colors.red[200],
+                                          margin: EdgeInsets.only(left: 20),
+                                          child: Card(
+                                              color: Colors.white,
+                                              shadowColor: Colors.grey,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                              child: Container(
+                                                  padding: EdgeInsets.only(
+                                                      top: 6,
+                                                      bottom: 6,
+                                                      left: 6),
+                                                  height: deviceHeight * 0.05,
+                                                  child: Row(children: [
+                                                    Icon(Icons.location_on,
+                                                        color: Colors.grey),
+                                                    Text(
+                                                      "地図アプリで開く",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          color:
+                                                              Colors.black54),
+                                                    )
+                                                  ]))),
+                                        )),
+                                  ],
+                                )),
                           ),
                         ],
                       ),
@@ -124,6 +169,15 @@ class _LocationCard extends StatelessWidget {
       children: list,
       mainAxisAlignment: MainAxisAlignment.center,
     );
+  }
+
+  _launchCaller(String tel) async {
+    String url = "tel:" + tel;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 

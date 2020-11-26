@@ -34,6 +34,7 @@ class SweetsCardModel {
 
       _sweets.add(
           {
+            'itemId': "1",
             'name': jsonData[i]['sweet']['name'],
             'note':  jsonData[i]['sweet']['note'],
             'material':  jsonData[i]['sweet']['material'],

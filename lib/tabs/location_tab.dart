@@ -8,14 +8,9 @@ class Location extends StatefulWidget {
 
 class _Location extends State<Location> {
   List _cardList = List<LocationCardModel>();
-  var _textFieldFocusNode;
-  var _inputController = TextEditingController();
-  var _chipList = List<Chip>();
-  var _keyNumber = 0;
 
   @override
   void initState() {
-    _textFieldFocusNode = FocusNode();
     super.initState();
     _load();
     setState(() {});
@@ -24,41 +19,6 @@ class _Location extends State<Location> {
   Future<void> _load() async {
     _cardList = await LocationCardModel().createCardList('home_timeline');
   }
-
-
-
-  @override
-  void dispose() {
-    _textFieldFocusNode.dispose();
-    super.dispose();
-  }
-
-  void _onSubmitted(String text) {
-    setState(() {
-      _inputController.text = '';
-      _addChip(text);
-      FocusScope.of(context).requestFocus(_textFieldFocusNode);
-    });
-  }
-
-  void _addChip(String text) {
-    var chipKey = Key('chip_key_$_keyNumber');
-    _keyNumber++;
-
-    _chipList.add(
-      Chip(
-        key: chipKey,
-        label: Text(text),
-        onDeleted: () => _deleteChip(chipKey),
-      ),
-    );
-  }
-
-  void _deleteChip(Key chipKey) {
-    setState(() => _chipList.removeWhere((Widget w) => w.key == chipKey));
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -87,40 +47,42 @@ class _Location extends State<Location> {
                       }
                   )
               ),
-              Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    TextField(
-                      focusNode: _textFieldFocusNode,
-                      autofocus: false,
-                      controller: _inputController,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '食材・料理名で探す',
-                      ),
-                      onSubmitted: _onSubmitted,
-                    ),
-                    Row(
+              Container(
+                  color: Colors.grey,
+                  padding: EdgeInsets.all(5.0),
+                  child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Expanded(
-                          child: Wrap(
-                            alignment: WrapAlignment.start,
-                            spacing: 8.0,
-                            runSpacing: 0.0,
-                            direction: Axis.horizontal,
-                            children: _chipList,
+                        TextFormField(
+                          maxLength: 20,
+                          maxLines: 1,
+                          autocorrect: true,
+                          decoration: InputDecoration(
+                            hintText: '食材・料理名で探す',
+                            prefixIcon: Icon(Icons.search_rounded,color: Colors.white,),
+                            hintStyle: TextStyle(color: Colors.grey),
+                            filled: true,
+                            fillColor: Colors.white70,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                              borderSide: BorderSide(color: Colors.grey, width: 2),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                              borderSide: BorderSide(color: Colors.grey, width: 2),
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  ]
-              )
+                        Container(
+                          margin: EdgeInsets.only(left: 20),
+                          child: FloatingActionButton.extended(
+                            heroTag: "",
+                            backgroundColor: Colors.black38,
+                            onPressed: () {},
+                            label: Text("アレルゲンを追加して検索"),
+                          ),
+                        )
+                      ]))
             ]
         )
     );

@@ -30,6 +30,10 @@ dependencies:
   cookie_jar: ^1.0.0
   video_player: ^0.10.11+1
   google_maps_flutter: ^1.0.6
+  url_launcher: ^5.7.10
+  camera: ^0.5.8+11
+  path_provider: ^1.6.24
+  shared_preferences: ^0.5.12+4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,8 +44,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: ^0.8.1
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
 
 # The following section is specific to Flutter.
 flutter:

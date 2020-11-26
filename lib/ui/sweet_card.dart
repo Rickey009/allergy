@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../page/image_preview.dart';
 import '../util/expansion_tile.dart';
+import '../page/detail_item.dart';
 
 class SweetCard {
   Widget createCard(Map sweetData) {
@@ -12,15 +13,25 @@ class _SweetCard extends StatelessWidget {
   final Map _sweetData;
   final GlobalKey<AppExpansionTileState> expansionTile = new GlobalKey();
   String _tileTitle = '原材料詳細';
-  _SweetCard(this._sweetData,);
+
+  _SweetCard(
+    this._sweetData,
+  );
+
+  void _forwardRecipePage(argContext, argData) async {
+    Navigator.push(
+        argContext,
+        MaterialPageRoute(
+          builder: (context) => DetailItemPage(
+              title: argData["name"],
+              url: argData["imageUrlHttps"],
+              id: argData["itemId"]),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    final double deviceHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return Card(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +42,7 @@ class _SweetCard extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding:
-                  EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+                      EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
                   color: Colors.white70,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +51,7 @@ class _SweetCard extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child:
-                            _Image(imageUrl: _sweetData['imageUrlHttps']),
+                                _Image(imageUrl: _sweetData['imageUrlHttps']),
                           ),
                           Expanded(
                             child: (Column(
@@ -71,28 +82,33 @@ class _SweetCard extends StatelessWidget {
 //                                color: Colors.red[200],
                                   margin: EdgeInsets.only(left: 20),
                                   child: Card(
-                                    color: Colors.white,
-                                      shadowColor:Colors.grey,
+                                      color: Colors.white,
+                                      shadowColor: Colors.grey,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(50.0),
+                                            BorderRadius.circular(50.0),
                                       ),
-                                      child: Container(
-                                          padding: EdgeInsets.only(top:6, bottom:6, left:6),
-                                          height: deviceHeight * 0.05,
-                                          child:  Row(children: [
-                                            Expanded(
-                                                child: Image.asset(
-                                                    "assets/icons/pareco.png",
-                                                    fit: BoxFit.cover)),
-                                            Expanded(
-                                                child: Text(
+                                      child: InkWell(
+                                          onTap: () => _forwardRecipePage(
+                                              context, _sweetData),
+                                          child: Container(
+                                              padding: EdgeInsets.only(
+                                                  top: 6, bottom: 6, left: 6),
+                                              height: deviceHeight * 0.05,
+                                              child: Row(children: [
+                                                Expanded(
+                                                    child: Image.asset(
+                                                        "assets/icons/pareco.png",
+                                                        fit: BoxFit.cover)),
+                                                Expanded(
+                                                    child: Text(
                                                   "で購入",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.normal,
+                                                      fontWeight:
+                                                          FontWeight.normal,
                                                       color: Colors.black54),
                                                 ))
-                                          ]))),
+                                              ])))),
                                 ),
                               ],
                             )),
@@ -105,8 +121,7 @@ class _SweetCard extends StatelessWidget {
                           //backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
                           children: <Widget>[
                             ListTile(
-                              title:
-                              getMaterialChips(_sweetData['material']),
+                              title: getMaterialChips(_sweetData['material']),
                               onTap: () {
                                 expansionTile.currentState.collapse();
                               },
@@ -197,10 +212,7 @@ class _Image extends StatelessWidget {
 
   /// 画像1枚用のウィジェット
   Widget _image1(BuildContext context) {
-    final double deviceHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final double deviceHeight = MediaQuery.of(context).size.height;
     return _imageItem(
       context: context,
       url: imageUrl,
