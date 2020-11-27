@@ -37,8 +37,9 @@ class _Search extends State<Search> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(deviceHeight * 0.1), // here the desired height
-              child:AppBar(
+              preferredSize: Size.fromHeight(deviceHeight * 0.1),
+              // here the desired height
+              child: AppBar(
                   title: Center(
                     child: Text(""),
                   ),
@@ -53,10 +54,9 @@ class _Search extends State<Search> {
                         );
                       }).toList(),
                     ),
-                  )
-              )
-          ),
-          body: TabBarView(
+                  ))),
+          body: SafeArea(
+              child: TabBarView(
             children: choices.map((Choice choice) {
               return Padding(
                 padding: const EdgeInsets.all(5.0),
@@ -64,12 +64,13 @@ class _Search extends State<Search> {
                 child: choice.page,
               );
             }).toList(),
-          ),
+          )),
         ),
       ),
     );
   }
 }
+
 class Choice {
   const Choice({this.title, this.icon, this.page});
 
@@ -101,4 +102,3 @@ class ColoredTabBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => tabBar.preferredSize;
 }
-

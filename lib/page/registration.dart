@@ -354,7 +354,6 @@ class _RegistrationState extends State<RegistrationPage> {
         child: Stack(children: <Widget>[
           Image.asset(assetsImage, fit: BoxFit.cover),
           _checked(text),
-          _checked(text),
           Align(
               alignment: Alignment.bottomCenter,
               child: Container(
