@@ -1,4 +1,4 @@
-import '../model/article_card_model.dart';
+import '../page/talk_list.dart';
 import 'package:flutter/material.dart';
 import '../header.dart';
 
@@ -17,6 +17,11 @@ class _Lookup extends State<Lookup> {
     setState(() {});
   }
 
+  void _forwardListPage(argContext) async {
+    Navigator.push(
+        argContext, MaterialPageRoute(builder: (context) => TalkPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     final double deviceHeight = MediaQuery.of(context).size.height;
@@ -28,140 +33,111 @@ class _Lookup extends State<Lookup> {
             headerColor: Colors.green[500],
             headerTitleColor: Colors.white),
         body: Container(
-          padding: EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 20),
+          padding: EdgeInsets.only(left: 20, right: 20, top: 20),
           child: SingleChildScrollView(
               child: Container(
-                  height: deviceHeight * 0.4,
+                  height: deviceHeight * 0.65,
                   width: deviceWidth * 0.9,
                   child: Column(children: <Widget>[
                     Expanded(
-                        flex: 4,
-                        child: Stack(children: <Widget>[
-                          Image.asset("assets/icons/icon001.png",
-                              fit: BoxFit.cover),
+                        flex: 3,
+                        child: Card(
+                            color: Colors.orangeAccent[100],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: InkWell(
+                                onTap: () => _forwardListPage(context),
+                                child:
+                                  Center(
+                                    child: Container(
+                                        margin: EdgeInsets.all(30.0),
+                                        child: Column(children: <Widget>[
+                                          Text(
+                                            "アレルギーについて調べる",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                              color: Colors.black87,
+                                              backgroundColor:
+                                              Colors.lightGreenAccent,
+                                            ),
+                                          ),
+                                          Text(
+                                            "",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black87,
+                                            ),
+                                          ),
+                                        ])),
+                                  )
+                                ))),
+                    Expanded(
+                        flex: 3,
+                        child: Card(
+                            color: Colors.orangeAccent[100],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child:
                           Center(
                             child: Container(
                                 margin: EdgeInsets.all(30.0),
                                 child: Column(children: <Widget>[
                                   Text(
-                                    "名前を調べる",
+                                    "相談する",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 20,
                                       color: Colors.black87,
+                                      backgroundColor:
+                                      Colors.lightGreenAccent,
                                     ),
                                   ),
                                   Text(
-                                    "写真を撮ると人工知能とGreenSnapのみんなが教えてくれます！",
+                                    "他のユーザーにアレルギーのことを聞いてみよう！",
                                     style: TextStyle(
                                       fontWeight: FontWeight.normal,
                                       color: Colors.black87,
+                                      fontSize: 15,
                                     ),
                                   ),
                                 ])),
-                          )
-                        ], fit: StackFit.expand)),
-                    Expanded(
-                        flex: 1,
-                        child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              "みんなの投稿をみる＞",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
-                              ),
-                            ))),
+                          ))),
                     Expanded(
                         flex: 3,
-                        child: Row(children: <Widget>[
-                          Expanded(
-                              child: Stack(children: <Widget>[
-                                Image.asset("assets/icons/icon001.png",
-                                    fit: BoxFit.cover),
-                                Center(
-                                  child: Container(
-                                      child: Column(children: <Widget>[
-                                        Text(
-                                          "育て方を調べる",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black87,
-                                          ),
-                                        ),
-                                        Text(
-                                          "植物図鑑で育て方を調べられます！",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black87,
-                                          ),
-                                        ),
-                                      ])),
-                                )
-                              ], fit: StackFit.expand)),
-                          Expanded(
-                              child: Stack(children: <Widget>[
-                                Image.asset("assets/icons/icon001.png",
-                                    fit: BoxFit.cover),
-                                Center(
-                                  child: Container(
-                                      child: Column(children: <Widget>[
-                                        Text(
-                                          "相談する",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black87,
-                                          ),
-                                        ),
-                                        Text(
-                                          "みんなが植物の悩みに答えてくれます！",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black87,
-                                          ),
-                                        ),
-                                      ])),
-                                )
-                              ], fit: StackFit.expand))
-                        ])),
-                    Expanded(
-                        flex: 1,
-                        child: Stack(children: <Widget>[
-                          Image.asset("assets/icons/icon001.png",
-                              fit: BoxFit.cover),
-                          Center(
-                            child: Container(
-                                child: Column(children: <Widget>[
-                                  Text(
-                                    "人気の投稿を見つけよう",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black87,
+                        child: Card(
+                            color: Colors.orangeAccent[100],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: Center(
+                              child: Container(
+                                  margin: EdgeInsets.all(30.0),
+                                  child: Column(children: <Widget>[
+                                    Text(
+                                      "みんなでアレルギー",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Colors.black87,
+                                        backgroundColor:
+                                            Colors.lightGreenAccent,
+                                      ),
                                     ),
-                                  ),
-
-                                ])),
-                          )
-                        ], fit: StackFit.expand)),
-                    Expanded(
-                        flex: 1,
-                        child: Stack(children: <Widget>[
-                          Image.asset("assets/icons/icon001.png",
-                              fit: BoxFit.cover),
-                          Center(
-
-                            child: Container(
-                                child: Column(children: <Widget>[
-                                  Text(
-                                    "ショップを検索する",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black87,
+                                    Text(
+                                      "対応商品を開発する",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Colors.black87,
+                                        backgroundColor:
+                                            Colors.lightGreenAccent,
+                                      ),
                                     ),
-                                  ),
-
-                                ])),
-                          )
-                        ], fit: StackFit.expand))
+                                  ])),
+                            ))),
                   ]))),
         ));
   }

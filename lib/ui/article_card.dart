@@ -23,52 +23,47 @@ class _ArticleCard extends StatelessWidget {
         children: <Widget>[
           Container(
             height: deviceHeight * 0.2,
-          child:Image.network(_articleData["url"], fit: BoxFit.cover)
-          ),
+          child:Center(child:Image.network(_articleData["url"], fit: BoxFit.cover)
+          )),
           Container(
               padding: EdgeInsets.all(5.0),
-              height: deviceHeight * 0.15,
+              height: deviceHeight * 0.1,
               child: Column(children: <Widget>[
+                // Expanded(
+                //     flex: 3,
+                //     child: SizedBox(
+                //         width: double.infinity,
+                //         child: Container(
+                //             child: Text(
+                //           _articleData["date"],
+                //           textAlign: TextAlign.left,
+                //           style: TextStyle(
+                //               fontWeight: FontWeight.normal,
+                //               color: Colors.grey),
+                //         )))),
                 Expanded(
-                    flex: 3,
-                    child: SizedBox(
-                        width: double.infinity,
-                        child: Container(
-                            child: Text(
-                          _articleData["date"],
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontWeight: FontWeight.normal,
-        //                      fontSize: 15,
-                              color: Colors.grey),
-                        )))),
-                Expanded(
-                    flex: 6,
+                //  flex: 6,
                     child: SizedBox(
                         width: double.infinity,
                         child: Container(
                             child: Text(
                           _articleData["title"],
-                          maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontWeight: FontWeight.normal,
-        //                      fontSize: 18,
                               color: Colors.black54),
                         )))),
-                Expanded(
-                    flex: 3,
-                    child: SizedBox(
-                        width: double.infinity,
-                        child: Container(
-                            child: Text(
-                          "by " + _articleData["writer"],
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                              fontWeight: FontWeight.normal,
-         //                     fontSize: 15,
-                              color: Colors.black54),
-                        )))),
+                // Expanded(
+                //     flex: 3,
+                //     child: SizedBox(
+                //         width: double.infinity,
+                //         child: Container(
+                //             child: Text(
+                //           "by " + _articleData["writer"],
+                //           textAlign: TextAlign.end,
+                //           style: TextStyle(
+                //               fontWeight: FontWeight.normal,
+                //               color: Colors.black54),
+                //         )))),
               ]))
         ],
       ),

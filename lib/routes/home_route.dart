@@ -2,6 +2,7 @@ import 'package:allergy/page/posting.dart';
 import 'package:flutter/material.dart';
 import '../header.dart';
 import '../model/meals_card_model.dart';
+//import '../notification_handler.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class _Home extends State<Home> {
   void initState() {
     super.initState();
     _load();
+    //initNotification();
     setState(() {});
   }
 

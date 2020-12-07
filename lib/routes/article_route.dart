@@ -40,7 +40,7 @@ class _Article extends State<Article> {
                                 width: double.infinity,
                                 child: Container(
                                     child: Text(
-                                  '今日のピックアップ',
+                                  'アレルギーの基礎知識',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
@@ -57,94 +57,93 @@ class _Article extends State<Article> {
                                   childAspectRatio:
                                       MediaQuery.of(context).size.width /
                                           (MediaQuery.of(context).size.height /
-                                              1.2),
+                                              1.4),
                                 ),
                                 itemBuilder: (BuildContext context, int index) {
                                   return _cardList[index];
                                 }),
-                            Card(
-                              child: Container(
-                                  color: Colors.yellow[50],
-                               //   height: deviceHeight * 0.3,
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Column(children: <Widget>[
-                                    SizedBox(
-                                        width: double.infinity,
-                                        child: Container(
-                                            child: Text(
-                                          '今週のイチオシ！',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w900,
- //                                             fontSize: 25,
-                                              color: Colors.black54),
-                                        ))),
-                                    Container(
-                                        margin: EdgeInsets.only(
-                                            top: deviceHeight * 0.02),
-                                        child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Expanded(
-                                                  flex: 4,
-                                                  child: Image.network(
-                                                      _cardList[4]
-                                                              .getArticleData[
-                                                          "url"],
-                                                      fit: BoxFit.cover)),
-                                              Expanded(
-                                                  flex: 5,
-                                                  child: Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 20),
-                                                      height: deviceHeight * 0.15,
-                                                      child: Column(
-                                                          children: <Widget>[
-                                                            Expanded(
-                                                                flex: 2,
-                                                                child: SizedBox(
-                                                                    width: double
-                                                                        .infinity,
-                                                                    child: Container(
-                                                                        child: Text(
-                                                                      _cardList[4]
-                                                                              .getArticleData[
-                                                                          "date"],
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
-                                                                      style: TextStyle(
-                                                                          fontWeight: FontWeight
-                                                                              .normal,
-                                                                          color:
-                                                                              Colors.grey),
-                                                                    )))),
-                                                            Expanded(
-                                                                flex: 5,
-                                                                child: SizedBox(
-                                                                    width: double
-                                                                        .infinity,
-                                                                    child: Container(
-                                                                        child: Text(
-                                                                      _cardList[4]
-                                                                              .getArticleData[
-                                                                          "title"],
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
-                                                                      maxLines:
-                                                                          3,
-                                                                      style: TextStyle(
-                                                                          fontWeight: FontWeight
-                                                                              .bold,
-                                                                          color:
-                                                                              Colors.black54),
-                                                                    ))))
-                                                          ])))
-                                            ]))
-                                  ])),
-                            )
+                            // Card(
+                            //   child: Container(
+                            //       color: Colors.yellow[50],
+                            //    //   height: deviceHeight * 0.3,
+                            //       padding: EdgeInsets.all(10.0),
+                            //       child: Column(children: <Widget>[
+                            //         SizedBox(
+                            //             width: double.infinity,
+                            //             child: Container(
+                            //                 child: Text(
+                            //               '今週のイチオシ！',
+                            //               textAlign: TextAlign.left,
+                            //               style: TextStyle(
+                            //                   fontWeight: FontWeight.w900,
+                            //                   color: Colors.black54),
+                            //             ))),
+                            //         Container(
+                            //             margin: EdgeInsets.only(
+                            //                 top: deviceHeight * 0.02),
+                            //             child: Row(
+                            //                 crossAxisAlignment:
+                            //                     CrossAxisAlignment.start,
+                            //                 children: <Widget>[
+                            //                   Expanded(
+                            //                       flex: 4,
+                            //                       child: Image.network(
+                            //                           _cardList[4]
+                            //                                   .getArticleData[
+                            //                               "url"],
+                            //                           fit: BoxFit.cover)),
+                            //                   Expanded(
+                            //                       flex: 5,
+                            //                       child: Container(
+                            //                           margin: EdgeInsets.only(
+                            //                               left: 20),
+                            //                           height: deviceHeight * 0.15,
+                            //                           child: Column(
+                            //                               children: <Widget>[
+                            //                                 Expanded(
+                            //                                     flex: 2,
+                            //                                     child: SizedBox(
+                            //                                         width: double
+                            //                                             .infinity,
+                            //                                         child: Container(
+                            //                                             child: Text(
+                            //                                           _cardList[4]
+                            //                                                   .getArticleData[
+                            //                                               "date"],
+                            //                                           textAlign:
+                            //                                               TextAlign
+                            //                                                   .left,
+                            //                                           style: TextStyle(
+                            //                                               fontWeight: FontWeight
+                            //                                                   .normal,
+                            //                                               color:
+                            //                                                   Colors.grey),
+                            //                                         )))),
+                            //                                 Expanded(
+                            //                                     flex: 5,
+                            //                                     child: SizedBox(
+                            //                                         width: double
+                            //                                             .infinity,
+                            //                                         child: Container(
+                            //                                             child: Text(
+                            //                                           _cardList[4]
+                            //                                                   .getArticleData[
+                            //                                               "title"],
+                            //                                           textAlign:
+                            //                                               TextAlign
+                            //                                                   .left,
+                            //                                           maxLines:
+                            //                                               3,
+                            //                                           style: TextStyle(
+                            //                                               fontWeight: FontWeight
+                            //                                                   .bold,
+                            //                                               color:
+                            //                                                   Colors.black54),
+                            //                                         ))))
+                            //                               ])))
+                            //                 ]))
+                            //       ])),
+                            // )
                           ],
                         ),
                       );

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "898960540955",
+    "project_id": "pareco-5a9be",
+    "storage_bucket": "pareco-5a9be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898960540955:android:78d8017497b938a5763fbe",
+        "android_client_info": {
+          "package_name": "com.sample.allergy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898960540955-vbn0rh56lbvif7sa9o1bvttomlcmohp7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaHUUvKgPVL4IS-HeFem1ZKPMtXz9-FYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "898960540955-vbn0rh56lbvif7sa9o1bvttomlcmohp7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
