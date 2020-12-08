@@ -28,6 +28,7 @@ class FoodsCardModel {
 
       _sweets.add(
           {
+            'itemId': jsonData[i]['food']['id'].toString(),
             'name': jsonData[i]['food']['name'],
             'note':  jsonData[i]['food']['note'],
             'material':  jsonData[i]['food']['material'],

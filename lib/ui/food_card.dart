@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../page/image_preview.dart';
 import '../util/expansion_tile.dart';
+import '../page/detail_item.dart';
 
 class FoodCard {
   Widget createCard(Map foodData) {
@@ -9,13 +10,25 @@ class FoodCard {
 }
 
 class _FoodCard extends StatelessWidget {
-  final Map _foodCard;
+  final Map _foodData;
   final GlobalKey<AppExpansionTileState> expansionTile = new GlobalKey();
   String _tileTitle = '原材料詳細';
 
   _FoodCard(
-    this._foodCard,
+    this._foodData,
   );
+
+
+  void _forwardDetailPage(argContext, argData) async {
+    Navigator.push(
+        argContext,
+        MaterialPageRoute(
+          builder: (context) => DetailItemPage(
+              title: argData["name"],
+              url: argData["imageUrlHttps"],
+              id: argData["itemId"]),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +43,7 @@ class _FoodCard extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding:
-                      EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+                  EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
                   color: Colors.white70,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,22 +51,23 @@ class _FoodCard extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child: _Image(imageUrl: _foodCard['imageUrlHttps']),
+                            child:
+                            _Image(imageUrl: _foodData['imageUrlHttps']),
                           ),
                           Expanded(
                             child: (Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Container(
-                                  child:
-                                      getFavoriteWidgets(_foodCard['favorite']),
+                                  child: getFavoriteWidgets(
+                                      _foodData['favorite']),
                                 ),
                                 Container(
 //                                color: Colors.red[50],
                                   margin: EdgeInsets.only(left: 10),
                                   padding: EdgeInsets.symmetric(vertical: 5),
                                   child: Text(
-                                    _foodCard['name'],
+                                    _foodData['name'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -63,7 +77,7 @@ class _FoodCard extends StatelessWidget {
 //                                color: Colors.red[200],
                                   margin: EdgeInsets.only(left: 10),
                                   padding: EdgeInsets.symmetric(vertical: 5),
-                                  child: Text(_foodCard['note']),
+                                  child: Text(_foodData['note']),
                                 ),
                                 Container(
 //                                color: Colors.red[200],
@@ -73,25 +87,29 @@ class _FoodCard extends StatelessWidget {
                                       shadowColor: Colors.grey,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(50.0),
+                                        BorderRadius.circular(50.0),
                                       ),
-                                      child: Container(
-                                          padding: EdgeInsets.only(
-                                              top: 6, bottom: 6, left: 6),
-                                          height: deviceHeight * 0.05,
-                                          child: Row(children: [
-                                            Expanded(
-                                                child: Image.asset(
-                                                    "assets/icons/pareco.png",
-                                                    fit: BoxFit.cover)),
-                                            Expanded(
-                                                child: Text(
-                                              "で購入",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Colors.black54),
-                                            ))
-                                          ]))),
+                                      child: InkWell(
+                                          onTap: () => _forwardDetailPage(
+                                              context, _foodData),
+                                          child: Container(
+                                              padding: EdgeInsets.only(
+                                                  top: 6, bottom: 6, left: 6),
+                                              height: deviceHeight * 0.05,
+                                              child: Row(children: [
+                                                Expanded(
+                                                    child: Image.asset(
+                                                        "assets/icons/pareco.png",
+                                                        fit: BoxFit.cover)),
+                                                Expanded(
+                                                    child: Text(
+                                                      "で購入",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.normal,
+                                                          color: Colors.black54),
+                                                    ))
+                                              ])))),
                                 ),
                               ],
                             )),
@@ -104,7 +122,7 @@ class _FoodCard extends StatelessWidget {
                           //backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
                           children: <Widget>[
                             ListTile(
-                              title: getMaterialChips(_foodCard['material']),
+                              title: getMaterialChips(_foodData['material']),
                               onTap: () {
                                 expansionTile.currentState.collapse();
                               },

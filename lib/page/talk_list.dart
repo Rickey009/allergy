@@ -4,12 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class TalkPage extends StatefulWidget {
+  final String title;
+  TalkPage({this.title});
+
   @override
-  _TalkPageState createState() => _TalkPageState();
+  _TalkPageState createState() => _TalkPageState(title: title);
+
 }
 
 class _TalkPageState extends State<TalkPage> {
   List _cardList = [];
+  final String title;
+
+  _TalkPageState({this.title});
 
   @override
   void initState() {
@@ -25,7 +32,7 @@ class _TalkPageState extends State<TalkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("アレルギーについて調べる"),
+          title: Text(title),
           backgroundColor: Colors.green[100],
         ),
         body: Container(

@@ -17,9 +17,9 @@ class _Lookup extends State<Lookup> {
     setState(() {});
   }
 
-  void _forwardListPage(argContext) async {
+  void _forwardListPage(argContext, argTitle) async {
     Navigator.push(
-        argContext, MaterialPageRoute(builder: (context) => TalkPage()));
+        argContext, MaterialPageRoute(builder: (context) => TalkPage(title: argTitle)));
   }
 
   @override
@@ -47,7 +47,7 @@ class _Lookup extends State<Lookup> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: InkWell(
-                                onTap: () => _forwardListPage(context),
+                                onTap: () => _forwardListPage(context, "アレルギーについて調べる"),
                                 child:
                                   Center(
                                     child: Container(
@@ -80,7 +80,9 @@ class _Lookup extends State<Lookup> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            child:
+                            child:InkWell(
+                                onTap: () => _forwardListPage(context, "相談する"),
+                                child:
                           Center(
                             child: Container(
                                 margin: EdgeInsets.all(30.0),
@@ -104,7 +106,7 @@ class _Lookup extends State<Lookup> {
                                     ),
                                   ),
                                 ])),
-                          ))),
+                          )))),
                     Expanded(
                         flex: 3,
                         child: Card(
@@ -112,7 +114,9 @@ class _Lookup extends State<Lookup> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            child: Center(
+                            child: InkWell(
+                                onTap: () => _forwardListPage(context, "商品を開発する"),
+                                child:Center(
                               child: Container(
                                   margin: EdgeInsets.all(30.0),
                                   child: Column(children: <Widget>[
@@ -137,7 +141,7 @@ class _Lookup extends State<Lookup> {
                                       ),
                                     ),
                                   ])),
-                            ))),
+                            )))),
                   ]))),
         ));
   }

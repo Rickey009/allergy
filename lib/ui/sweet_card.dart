@@ -18,7 +18,7 @@ class _SweetCard extends StatelessWidget {
     this._sweetData,
   );
 
-  void _forwardRecipePage(argContext, argData) async {
+  void _forwardDetailPage(argContext, argData) async {
     Navigator.push(
         argContext,
         MaterialPageRoute(
@@ -89,7 +89,7 @@ class _SweetCard extends StatelessWidget {
                                             BorderRadius.circular(50.0),
                                       ),
                                       child: InkWell(
-                                          onTap: () => _forwardRecipePage(
+                                          onTap: () => _forwardDetailPage(
                                               context, _sweetData),
                                           child: Container(
                                               padding: EdgeInsets.only(
